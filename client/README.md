@@ -1,4 +1,4 @@
-<h1 align="center">Bienvenue sur le client Download Video 👋</h1>
+<h1 align="center">Bienvenue sur MediaMagnet 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/Gorski_anthony" target="_blank">
