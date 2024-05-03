@@ -3,19 +3,15 @@ const { exec } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
+const { getDownloadCommand } = require("../services/youtubeDl");
+const { isFolderExist } = require("../services/isFolderExist");
+
 const inputDir = path.join(__dirname, "..", "videos/input");
 const outputDir = path.join(__dirname, "..", "videos/output");
 
-/**
- * Vérifie si les répertoires d'entrée et de sortie existent, et les crée s'ils n'existent pas.
- */
-if (!fs.existsSync(inputDir)) {
-	fs.mkdirSync(inputDir, { recursive: true });
-}
+isFolderExist(inputDir);
+isFolderExist(outputDir);
 
-if (!fs.existsSync(outputDir)) {
-	fs.mkdirSync(outputDir, { recursive: true });
-}
 const download = (req, res) => {
 	const videoUrl = req.query.url;
 	if (!videoUrl) {
@@ -28,17 +24,6 @@ const download = (req, res) => {
 	const videoId = new Date().getTime();
 	const inputVideoPath = path.join(inputDir, `${videoId}.mp4`);
 	const outputVideoPath = path.join(outputDir, `${videoId}-dl.mp4`);
-
-	const getDownloadCommand = (platform, videoUrl, outputPath) => {
-		switch (platform) {
-			case "youtube":
-				return `yt-dlp --no-check-certificate -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best -o "${inputVideoPath}" "${videoUrl}"`;
-			case "twitter":
-				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`;
-			default:
-				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`;
-		}
-	};
 
 	const youtubeDlCommand = getDownloadCommand(
 		req.query.p,
@@ -54,9 +39,9 @@ const download = (req, res) => {
 				.send("Erreur lors du téléchargement de la vidéo");
 		}
 		if (stderr) {
-			console.error(`Erreur youtube-dl: ${stderr}`);
+			console.error(`Erreur yt-dlp: ${stderr}`);
 		}
-		console.log(`Sortie youtube-dl: ${stdout}`);
+		console.log(`Sortie yt-dlp: ${stdout}`);
 		if (fs.existsSync(inputVideoPath)) {
 			ffmpeg(inputVideoPath)
 				.output(outputVideoPath)
