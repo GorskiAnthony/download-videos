@@ -34,9 +34,9 @@ const download = (req, res) => {
 			case "youtube":
 				return `yt-dlp --no-check-certificate -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best -o "${inputVideoPath}" "${videoUrl}"`;
 			case "twitter":
-				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`; // La commande peut être la même, mais gardée ici pour la personnalisation future
+				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`;
 			default:
-				return null; // ou une commande par défaut si nécessaire
+				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`;
 		}
 	};
 
@@ -59,9 +59,9 @@ const download = (req, res) => {
 		console.log(`Sortie youtube-dl: ${stdout}`);
 		if (fs.existsSync(inputVideoPath)) {
 			ffmpeg(inputVideoPath)
-				.output(outputVideoPath) // S'assurer que cette ligne est bien placée et correctement formulée
-				.videoCodec("libx264") // Utiliser .videoCodec pour spécifier le codec
-				.outputOptions(["-crf 23"]) // Utiliser un tableau pour les options peut aider à clarifier la commande
+				.output(outputVideoPath)
+				.videoCodec("libx264") // J'utilise .videoCodec pour spécifier le codec
+				.outputOptions(["-crf 23"]) // Et un tableau pour les options peut aider à clarifier la commande
 				.on("end", function () {
 					console.log("Conversion terminée.");
 					res.download(outputVideoPath);

@@ -30,6 +30,28 @@ npm install
 npm run start
 ```
 
+Une fois le serveur lancé, il faut se rendre sur [http://localhost:3000](http://localhost:3000) pour accéder à l'application.
+
+Pour telecharger une vidéo, le front n'étant pas encore développé, il faut passer directement par l'URL suivante :
+
+```txt
+http://localhost:3000/download?p=<youtube|twitter>&url=<URL_DE_LA_VIDEO>
+```
+
+Exemple :
+
+-   Youtube
+
+```txt
+http://localhost:3000/download?p=youtube&url=https://www.youtube.com/watch?v=VIDEO_ID
+```
+
+-   Twitter
+
+```txt
+http://localhost:3000/download?p=twitter&url=https://x.com/USER/status/VIDEO_ID
+```
+
 ## Description
 
 Ce projet est un outil de téléchargement de vidéos.
