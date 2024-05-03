@@ -6,6 +6,9 @@ const path = require("path");
 const inputDir = path.join(__dirname, "..", "videos/input");
 const outputDir = path.join(__dirname, "..", "videos/output");
 
+/**
+ * Vérifie si les répertoires d'entrée et de sortie existent, et les crée s'ils n'existent pas.
+ */
 if (!fs.existsSync(inputDir)) {
 	fs.mkdirSync(inputDir, { recursive: true });
 }
@@ -19,9 +22,12 @@ const download = (req, res) => {
 		return res.status(400).send("URL manquante");
 	}
 
+	/**
+	 * Utilisez la date actuelle pour générer un identifiant unique pour la vidéo.
+	 */
 	const videoId = new Date().getTime();
 	const inputVideoPath = path.join(inputDir, `${videoId}.mp4`);
-	const outputVideoPath = path.join(outputDir, `${videoId}-converti.mp4`);
+	const outputVideoPath = path.join(outputDir, `${videoId}-dl.mp4`);
 
 	const youtubeDlCommand = `youtube-dl -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best -o "${inputVideoPath}" ${videoUrl}`;
 
