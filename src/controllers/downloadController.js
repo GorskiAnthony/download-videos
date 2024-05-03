@@ -29,7 +29,22 @@ const download = (req, res) => {
 	const inputVideoPath = path.join(inputDir, `${videoId}.mp4`);
 	const outputVideoPath = path.join(outputDir, `${videoId}-dl.mp4`);
 
-	const youtubeDlCommand = `youtube-dl -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best -o "${inputVideoPath}" ${videoUrl}`;
+	const getDownloadCommand = (platform, videoUrl, outputPath) => {
+		switch (platform) {
+			case "youtube":
+				return `yt-dlp --no-check-certificate -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best -o "${inputVideoPath}" "${videoUrl}"`;
+			case "twitter":
+				return `yt-dlp --no-check-certificate -o "${outputPath}" "${videoUrl}"`; // La commande peut être la même, mais gardée ici pour la personnalisation future
+			default:
+				return null; // ou une commande par défaut si nécessaire
+		}
+	};
+
+	const youtubeDlCommand = getDownloadCommand(
+		req.query.p,
+		videoUrl,
+		inputVideoPath
+	);
 
 	exec(youtubeDlCommand, (error, stdout, stderr) => {
 		if (error) {
