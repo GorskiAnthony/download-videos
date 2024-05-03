@@ -8,13 +8,21 @@
     <img alt="Twitter: Gorski_anthony" src="https://img.shields.io/twitter/follow/Gorski_anthony.svg?style=social" />
   </a>
 </p>
-    
+
+## Prérequis
+
+Pour que votre application fonctionne correctement, vous devez avoir installé les dépendances suivantes :
+
+-   Node.js
+-   npm
+-   ffmpeg : [documentation ici](https://ffmpeg.org/)
+-   yt-dlp : [documentation ici](https://github.com/yt-dlp/yt-dlp/wiki/Installation#using-the-release-binary)
+
 ## Install
 
 ```sh
 npm install
 ```
-
 
 ## Usage
 
@@ -22,13 +30,16 @@ npm install
 npm run start
 ```
 
+## Description
 
-## Run tests
+Ce projet est un outil de téléchargement de vidéos.
 
-```sh
-npm run test
-```
+Les providers suivants sont supportés :
 
+-   [x] Youtube
+-   [x] 𝕏 (twitter)
+
+Il utilise la librairie yt-dlp pour télécharger les vidéos. Vous pouvez télécharger une vidéo en entrant son URL dans le champ prévu à cet effet.
 
 ## Auteur
 
@@ -37,11 +48,9 @@ npm run test
 -   𝕏 - (Twitter): [@Gorski_Anthony](https://twitter.com/Gorski_Anthony)
 -   GitHub: [@GorskiAnthony](https://github.com/GorskiAnthony)
 
-
 ## Affichez votre soutien
 
-Donnez un ⭐️ si ce projet vous a aidé !
----
+## Donnez un ⭐️ si ce projet vous a aidé !
 
 ### 🗃️ Version
 
