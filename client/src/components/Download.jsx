@@ -9,7 +9,7 @@ function Download() {
 					name="url"
 					id="url"
 					className="block w-full border-0 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 py-5  rounded-l-lg"
-					placeholder="http://localhost:3000/"
+					placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 					pattern="https://.*"
 					required
 				/>
