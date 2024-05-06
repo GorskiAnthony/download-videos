@@ -2,30 +2,44 @@ import {
 	CloudArrowDownIcon,
 	CheckCircleIcon,
 	CogIcon,
+	CheckIcon,
 } from "@heroicons/react/20/solid";
-function Steps({ progress, downloadDone = true }) {
+function Steps({ progress, downloadDone }) {
 	return (
 		<div>
-			<h1 className="mb-4 text-center font-black text-gray-700">STEPS</h1>
+			<h1 className="mb-4 text-center font-black text-gray-700">
+				ÉTAPES ({downloadDone ? "2/3" : progress === 0 ? "1/3" : "3/3"})
+			</h1>
 			<div className="flex">
 				<div className="w-1/3 text-center px-6">
 					<div className="bg-gray-300 rounded-lg flex items-center justify-center border border-gray-200">
 						<div className="w-1/3 bg-transparent h-20 flex items-center justify-center icon-step">
 							{downloadDone ? (
-								<CheckCircleIcon className="h-8 w-8" />
+								<CheckCircleIcon className="h-8 w-8 text-emerald-500" />
 							) : (
-								<CloudArrowDownIcon className="h-8 w-8" />
+								<CloudArrowDownIcon className="h-8 w-8 text-indigo-500" />
 							)}
 						</div>
-						<div className="w-2/3 bg-gray-200 h-24 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
+						<div className="w-2/3 bg-gray-200 h-24 flex flex-col items-center justify-center pl-1 pr-9 rounded-r-lg body-step">
 							{downloadDone ? (
 								<h2 className="font-bold px-8 text-sm">
 									Téléchargement terminé
 								</h2>
 							) : (
-								<h2 className="font-bold px-8 text-sm">
-									Téléchargement...
-								</h2>
+								<div className="flex">
+									<h2 className="font-bold pl-8 text-sm">
+										Téléchargement
+									</h2>
+									<span className="inline animate-bounce pl-1">
+										.
+									</span>
+									<span className="inline animate-bounce">
+										.
+									</span>
+									<span className="inline animate-bounce">
+										.
+									</span>
+								</div>
 							)}
 						</div>
 					</div>
@@ -43,7 +57,7 @@ function Steps({ progress, downloadDone = true }) {
 				<div className="w-1/3 text-center px-6">
 					<div className="bg-gray-300 rounded-lg flex items-center justify-center border border-gray-200">
 						<div className="w-1/3 bg-transparent h-20 flex items-center justify-center icon-step">
-							<CogIcon className="h-8 w-8" />
+							<CogIcon className="h-8 w-8 animate-spin text-indigo-500" />
 						</div>
 						<div className="w-2/3 bg-gray-200 h-24 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
 							<h2 className="font-bold text-sm">
@@ -54,7 +68,9 @@ function Steps({ progress, downloadDone = true }) {
 									? "En attente..."
 									: progress === 100
 									? "Terminé!"
-									: `Progression: ${progress}%`}
+									: `Progression: ${
+											progress !== null ? progress : ""
+									  }%`}
 							</p>
 						</div>
 					</div>
@@ -72,15 +88,7 @@ function Steps({ progress, downloadDone = true }) {
 				<div className="w-1/3 text-center px-6">
 					<div className="bg-gray-300 rounded-lg flex items-center justify-center border border-gray-200">
 						<div className="w-1/3 bg-transparent h-20 flex items-center justify-center icon-step">
-							<svg
-								width="24"
-								height="24"
-								xmlns="http://www.w3.org/2000/svg"
-								fillRule="evenodd"
-								clipRule="evenodd"
-							>
-								<path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z" />
-							</svg>
+							<CheckIcon className="h-8 w-8 text-emerald-500" />
 						</div>
 						<div className="w-2/3 bg-gray-200 h-24 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
 							<h2 className="font-bold text-sm">Fini</h2>

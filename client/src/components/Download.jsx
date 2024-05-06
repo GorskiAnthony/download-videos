@@ -65,7 +65,6 @@ function Download() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Form submitted");
 
 		setIsShowModal(true);
 		setProgress(0);
