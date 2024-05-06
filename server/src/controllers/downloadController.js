@@ -5,6 +5,7 @@ const path = require("path");
 
 const { getDownloadCommand } = require("../services/youtubeDl");
 const { isFolderExist } = require("../services/isFolderExist");
+const { scheduleFileDeletion } = require("../services/scheduleFileDeletion");
 
 const inputDir = path.join(__dirname, "..", "videos/input");
 const outputDir = path.join(__dirname, "..", "videos/output");
@@ -49,8 +50,16 @@ const download = (req, res) => {
 				.outputOptions(["-crf 23"]) // Et un tableau pour les options peut aider à clarifier la commande
 				.on("end", function () {
 					console.log("Conversion terminée.");
-					res.download(outputVideoPath);
+					const videoUrl = `${req.protocol}://${req.get(
+						"host"
+					)}/videos/${path.basename(outputVideoPath)}`;
+					res.json({ done: true, outputVideoPath: videoUrl });
+
+					// Planifier la suppression des fichiers
+					scheduleFileDeletion(inputVideoPath); // Supprime après 1 heure
+					scheduleFileDeletion(outputVideoPath); // Supprime après 1 heure
 				})
+
 				.on("error", function (err) {
 					console.error("Erreur FFmpeg:", err.message);
 					res.status(500).send(

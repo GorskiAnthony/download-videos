@@ -8,7 +8,7 @@ function Footer() {
 					<img
 						src={logo}
 						alt="logo"
-						class="h-20 w-20 p-2  rounded-full"
+						className="h-20 w-20 p-2  rounded-full"
 					/>
 					<span className="ml-3 text-xl">MediaMagnet</span>
 				</a>

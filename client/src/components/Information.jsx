@@ -29,12 +29,16 @@ function Information() {
 						</div>
 						<div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
 							<p className="leading-relaxed text-lg mb-4">
-								Ce site permet de télécharger une vidéo qui
-								provienne de youtube ou de twitter pour
-								l'instant. En effet, je vais mettre à jour pour
-								ajouter potentiellement d'autre provider.
-								N'hésitez pas à participer pour améliorer le
-								concept.
+								Ce site permet de télécharger des vidéos depuis
+								n'importe quel plateforme de streaming vidéo.
+								Youtube, twitter, facebook, vimeo, etc.
+								<br />
+								Il suffit de copier le lien de la vidéo et de le
+								coller dans le champ de texte ci-dessous et
+								cliquer sur le bouton de téléchargement.
+								Attendre quelques secondes le temps du
+								traitement et celui ci sera directement
+								téléchargé sur votre appareil.
 							</p>
 							<a
 								className="text-indigo-500 inline-flex items-center"
